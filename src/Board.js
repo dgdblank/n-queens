@@ -79,12 +79,28 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      return false; // fixme
+      var row = rowIndex;
+      var count = 0;
+      for(var i = 0; i < row.length; i++){
+        if(row[i]){
+          count++;
+        }
+      }
+      // debugger;
+      return (count <= 1) ? false: true;
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      return false; // fixme
+      var result=false;
+      var rows = this.rows();
+      for(var i=0; i<rows.length; i++){
+        if(this.hasRowConflictAt(rows[i])){
+          result=true;
+          break;
+        }
+      }
+      return result;
     },
 
 
@@ -94,12 +110,29 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      return false; // fixme
+      //debugger;
+      var count=0;
+      var rows = this.rows();
+      for(var i=0; i< rows.length;i++){
+        if(rows[i][colIndex]){
+          count++;
+        }
+      }
+      return count<=1 ? false : true;
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      return false; // fixme
+      var result = false;
+      var rows = this.rows();
+      for(var i = 0; i < rows.length; i++){
+        if(this.hasColConflictAt(i)){
+          return result = true;
+        }
+      }
+
+      return result;
+
     },
 
 
@@ -109,12 +142,29 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+    var count = 0;
+    var col= majorDiagonalColumnIndexAtFirstRow;
+    var rows=this.rows()
+    for(var i = 0; i < rows.length; i++){
+      if(rows[i][col+i]){
+        count++;
+      }
+    }
+    return count <= 1 ? false : true;
+
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      return false; // fixme
+      var result=false;
+      //for the number of diagonals on our board
+        //if hasMajorDiagonalConflictAt diagonal i
+          //return true
+      //return result
+
+      //for number of columns
+        //for number of rows
+          //algorithm for going through data
     },
 
 
