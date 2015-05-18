@@ -158,6 +158,7 @@
     hasAnyMajorDiagonalConflicts: function() {
       var rows = this.rows();
       var results = false;
+      // checks for conflicts of diagonals from -n to n
       for(var i = -(rows.length -1); i < rows.length; i++){
         if(this.hasMajorDiagonalConflictAt(i)){
           return results = true;
@@ -189,7 +190,8 @@
     hasAnyMinorDiagonalConflicts: function() {
       var result = false;
       var rows = this.rows();
-      for(var i = -(rows.length - 1); i < rows.length; i++){
+      // check conflicts for diagonals from 0 to 2n
+      for(var i = 0; i < rows.length * 2; i++){
         if(this.hasMinorDiagonalConflictAt(i)){
           return result = true;
         }
