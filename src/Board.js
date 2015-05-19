@@ -51,8 +51,8 @@
     },
 
     hasAnyQueensConflicts: function() {
-      return this.hasAnyRooksConflicts() || this.hasAnyMajorDiagonalConflicts() || this.hasAnyMinorDiagonalConflicts();
-    },
+      return this.hasAnyRooksConflicts() || this.hasAnyMajorDiagonalConflicts() || this.hasAnyMinorDiagonalConflicts();//N^2, N^2, N^2
+    },// Time complexity: O(n^2)
 
     _isInBounds: function(rowIndex, colIndex) {
       return (
@@ -79,9 +79,9 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      var row = rowIndex;
+      var row = rowIndex;//n
       var count = 0;
-      for(var i = 0; i < row.length; i++){
+      for(var i = 0; i < row.length; i++){//n
         if(row[i]){
           count++;
         }
@@ -144,8 +144,8 @@
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
       var count = 0;
       var col = majorDiagonalColumnIndexAtFirstRow;
-      var rows = this.rows()
-      for(var i = 0; i < rows.length; i++){
+      var rows = this.rows()//n
+      for(var i = 0; i < rows.length; i++){//n
         if(!!rows[i][col+i]){
           count++;
         }
@@ -156,11 +156,11 @@
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      var rows = this.rows();
+      var rows = this.rows();//n
       var results = false;
-      // checks for conflicts of diagonals from -n to n
-      for(var i = -(rows.length -1); i < rows.length; i++){
-        if(this.hasMajorDiagonalConflictAt(i)){
+      // checks for conflicts of diagonals from -n to n//n^2
+      for(var i = -(rows.length -1); i < rows.length; i++){//n
+        if(this.hasMajorDiagonalConflictAt(i)){//n
           return results = true;
         }
       }

@@ -131,39 +131,37 @@ console.log('Single solution for ' + n + ' queens:', JSON.stringify(result));
 window.countNQueensSolutions = function(n) {
   var solutionCount = 0;
   if(n === 0){ return 1};
-
+  var board = new Board({'n':n});
   // board = 2d array
-  var checkN = function(board){
-    if(array.length === n){
-      var tempBoard = new Board(board);
-      if(!tempBoard.hasAnyQueensConflicts()){
-        solutionCount++;
-        return;
-      }
+  var checkSolution = function(row){
+    //input:row, board
+    //output:
+    //base case:
+    //if row = n
+    if(row===n){
+      //increment solutioncount
+      solutionCount++;
+      //return
+      return;
     }
-    //while loop goes through every row
-    var bool=true;
-    var index = 0;
-    while(index < n && bool){
-      for(var i = 0; i < n; i++){
-        if(board.get(index)[i]){
-          bool=false;
-          break;
-        }
+
+    //recursion
+    //go through each column in row
+    for(var i=0; i< n; i++){
+      //place piece
+      board.togglePiece(row,i);
+      //recurse to check solutions
+      if(!board.hasAnyQueensConflicts()){
+        checkSolution(row+1);
       }
-      index++;
+      //unplace piece
+      board.togglePiece(row,i);
+
     }
-      //if row contains 1 advance
-      //else store row index
-    for(var i = 0; i < n; i++){
-      var copy = Array.prototype.slice.call(board);
 
-  }
+  };
 
-
-
-};
-
+  checkSolution(0);
   console.log('Number of solutions for ' + n + ' queens:', solutionCount);
   return solutionCount;
 };
